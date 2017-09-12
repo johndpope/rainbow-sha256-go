@@ -1,0 +1,19 @@
+web:
+  build: ./full
+  links:
+   - redis
+  ports:
+   - "9999:9999"
+  environment:
+    - REDIS_HOST=redis
+    - REDIS_PORT=6379
+    - REDIS_CHANNEL=events
+    - EVENTS_PER_SECOND=100
+  command: /app/bin/rainbow-sha256-go
+
+  
+redis:
+  image: "redis:2.8"
+  ports:
+    - "6379:6379"
+
